@@ -11,8 +11,22 @@ datasource db {
 }
 
 model FormEntry {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String
+  id         Int        @id @default(autoincrement())
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  name       String
+  categories Category[]
+
+  @@map("form_entries")
+}
+
+model Category {
+  id          Int         @id @default(autoincrement())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  name        String
+  parentId    Int?
+  formEntries FormEntry[]
+
+  @@map("categories")
 }
