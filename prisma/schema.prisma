@@ -11,22 +11,23 @@ datasource db {
 }
 
 model FormEntry {
-  id         Int        @id @default(autoincrement())
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  id         Int      @id @default(autoincrement())
+  agreeTerms Boolean
   name       String
-  categories Category[]
+  sectors    Sector[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@map("form_entries")
 }
 
-model Category {
+model Sector {
   id          Int         @id @default(autoincrement())
   createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  updatedAt   DateTime?   @updatedAt
   name        String
   parentId    Int?
   formEntries FormEntry[]
 
-  @@map("categories")
+  @@map("sectors")
 }
