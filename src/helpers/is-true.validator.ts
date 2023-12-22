@@ -1,4 +1,3 @@
-// is-true.validator.ts
 import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
