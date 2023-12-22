@@ -11,6 +11,12 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class FormEntriesService {
   constructor(private prisma: PrismaService) {}
 
+  /**
+   * Creates a new form entry.
+   * @param createFormEntryDto
+   * @returns {Promise<FormEntry>} A promise that resolves to the created form entry.
+   * @throws {ConflictException} If an error occurs while creating the form entry.
+   */
   async create(createFormEntryDto: CreateFormEntryDto) {
     const { name, agreeTerms, sectors } = createFormEntryDto;
 
@@ -30,6 +36,11 @@ export class FormEntriesService {
     }
   }
 
+  /**
+   * Retrieves all form entries.
+   * @throws {NotFoundException} If an error occurs while retrieving the form entries.
+   * @returns {Promise<FormEntry[]>} A promise that resolves to an array of form entries.
+   */
   async findAll() {
     try {
       const formEntries = this.prisma.formEntry.findMany({
@@ -43,6 +54,12 @@ export class FormEntriesService {
     }
   }
 
+  /**
+   * Retrieves a form entry by its ID.
+   * @throws {NotFoundException} If an error occurs while retrieving the form entry.
+   * @param  {number} id
+   * @returns {Promise<FormEntry>} A promise that resolves to the retrieved form entry.
+   */
   async findOne(id: number) {
     try {
       const formEntry = await this.prisma.formEntry.findUnique({
@@ -57,6 +74,13 @@ export class FormEntriesService {
     }
   }
 
+  /**
+   * Updates a form entry by its ID.
+   * @throws {NotFoundException} If the form entry with the specified ID is not found.
+   * @param  {number} id
+   * @param  {UpdateFormEntryDto} updateFormEntryDto
+   * @returns {Promise<FormEntry>} A promise that resolves to the updated form entry.
+   */
   async update(id: number, updateFormEntryDto: UpdateFormEntryDto) {
     const { name, agreeTerms, sectors } = updateFormEntryDto;
 
@@ -79,6 +103,12 @@ export class FormEntriesService {
     }
   }
 
+  /**
+   * Removes a form entry by its ID.
+   * @throws {NotFoundException} If the form entry with the specified ID is not found.
+   * @param  {number} id
+   * @returns {Promise<FormEntry>} A promise that resolves to the removed form entry.
+   */
   async remove(id: number) {
     try {
       const deletedFormEntry = await this.prisma.formEntry.delete({
