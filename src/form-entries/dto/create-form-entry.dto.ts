@@ -5,7 +5,7 @@ import {
   IsString,
   Validate,
 } from 'class-validator';
-import { IsTrueConstraint } from 'src/helpers/is-true.validator.ts';
+import { IsTrueConstraint } from 'src/helpers/is-true.validator';
 
 export class CreateFormEntryDto {
   @IsString()
